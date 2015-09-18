@@ -4,43 +4,43 @@
 //and then I count the remaining partial spiral
 public void calculatePosition(string sizeInput, string input)
 {
-	int size = Convert.ToInt32(sizeInput);
+	long size = Convert.ToInt64(sizeInput);
 	string[] inputSplit=input.Split();
 	if(inputSplit.Length==1)
 	{
-		int[] result= getCoord(Convert.ToInt32(input));
-		int offset=(size-result[2])/2;
+		long[] result= getCoord(Convert.ToInt64(input));
+		long offset=(size-result[2])/2;
 		Console.WriteLine("("+(result[0]+offset)+", "+(result[1]+offset)+")");
 	}
 	else
 	{
-		int x = Convert.ToInt32(inputSplit[0]);
-		int y = Convert.ToInt32(inputSplit[1]);
+		long x = Convert.ToInt64(inputSplit[0]);
+		long y = Convert.ToInt64(inputSplit[1]);
 		Console.WriteLine(getNum(x,y,size));
 	}
 }
 
-public int[] getCoord(int num)
+public long[] getCoord(long num)
 {
 	if(num==1)
-		return new int[] {0,0,-1};
-	int root = (int)Math.Sqrt(num);
-	int diff = num-root*root;
-	switch((int)(diff/(root+1)))
+		return new long[] {0,0,-1};
+	long root = (long)Math.Sqrt(num);
+	long diff = num-root*root;
+	switch((long)(diff/(root+1)))
 	{
-		case 0: return new int[] {root+1,root-diff+1,root};
-		case 1: return new int[] {root*2-diff+2,0,root};
-		case 2: return new int[] {0,root*3-diff+3,root};
-		default: return new int[] {root*4-diff+4,root+1,root};
+		case 0: return new long[] {root+1,root-diff+1,root};
+		case 1: return new long[] {root*2-diff+2,0,root};
+		case 2: return new long[] {0,root*3-diff+3,root};
+		default: return new long[] {root*4-diff+4,root+1,root};
 	}
 
 	return null;
 }
 
-public int getNum(int shiftedX, int shiftedY, int size)
+public long getNum(long shiftedX, long shiftedY, long size)
 {
-	int x=shiftedX-(size+1)/2;
-	int y=-shiftedY+(size+1)/2;
+	long x=shiftedX-(size+1)/2;
+	long y=-shiftedY+(size+1)/2;
 	if(x>=y)
 	{
 		if(x>-y)
